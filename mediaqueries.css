@@ -1,7 +1,8 @@
-@media screen and (max-width:1200px) {
-    #desktop-nav{
-        display: none;
+@media screen and (max-width: 768px) {
+    .section__pic-container img {
+      width: 150px; /* Smaller width for mobile screens */
     }
+  
     #hamburger-nav{
         display: flex;
     }
