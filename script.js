@@ -46,6 +46,13 @@ function toggleMenu() {
   faders.forEach((fader) => {
     appearOnScroll.observe(fader);
   });
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      // Toggle the "flipped" class
+      const projectBox = card.querySelector(".project-box");
+      projectBox.classList.toggle("flipped");
+    });
+  });
   
   // Active Navigation Link Highlight
   window.addEventListener("scroll", () => {
