@@ -4,311 +4,409 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Kushagra Tandon | Portfolio</title>
+
+  <!-- Basic SEO -->
+  <meta name="description"
+        content="Portfolio of Kushagra Tandon – Computer Science student at ASU focused on software engineering, machine learning, and quantitative systems." />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="media-queries.css" />
 </head>
 <body>
   <!-- Navigation -->
-  <nav id="desktop-nav">
-    <div class="logo">Kushagra Tandon</div>
-    <ul class="nav-links">
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#experience" class="nav-link">Experience</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Kushagra Tandon</div>
+      <div class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- Profile Section -->
-  <section id="profile">
-    <div class="section__pic-container">
-      <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
-    </div>
-    <div class="section__text">
-      <p class="section__text__p1">Hello, I'm</p>
-      <h1 class="title">Kushagra Tandon</h1>
-      <p class="section__text__p2">Software Developer</p>
-      <div class="btn-container">
-        <button class="btn" onclick="window.open('./assets/KushagraTandon_resume.pdf')">
-          Download CV
-        </button>
-        <button class="btn" onclick="location.href='#contact'">Contact Info</button>
+  <main>
+    <!-- Hero / Profile Section -->
+    <section id="profile" class="section hero">
+      <div class="section__pic-container reveal">
+        <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
       </div>
-    </br>
-      <div id="socials-container">
-        <img src="./assets/linkedin.png" alt="LinkedIn" class="icon" onclick="window.open('https://www.linkedin.com/in/kushagra-tandon-aa2b161ab/')" />
-        <img src="./assets/github.png" alt="GitHub" class="icon" onclick="window.open('https://github.com/kush0o7')" />
+      <div class="section__text reveal">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Kushagra Tandon</h1>
+        <p class="section__text__p2">Software Developer & ML Enthusiast</p>
+        <div class="btn-container">
+          <button class="btn btn-primary" onclick="window.open('./assets/Resume.pdf')">
+            Download CV
+          </button>
+          <button class="btn btn-secondary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img src="./assets/linkedin.png" alt="LinkedIn" class="icon"
+               onclick="window.open('https://www.linkedin.com/in/kushagra-tandon-aa2b161ab/')" />
+          <img src="./assets/github.png" alt="GitHub" class="icon"
+               onclick="window.open('https://github.com/kush0o7')" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- About Section -->
-  <section id="about">
-    <p class="section__text__p1">Get To Know More</p>
-    <h1 class="title">About Me</h1>
+  <section id="about" class="section">
+    <div class="section-header reveal">
+      <p class="section__text__p1">Get To Know More</p>
+      <h2 class="title">About Me</h2>
+    </div>
     <div class="about-details-container">
-      <div class="details-container">
-        <img src="./assets/experience.png" alt="Experience icon" />
-        <h3>Experience</h3>
-        <p>3+ years <br />Software Development</p>
+      <div class="about-cards reveal">
+        <div class="details-card">
+          <img src="./assets/experience.png" alt="Experience icon" />
+          <h3>Experience</h3>
+          <p>3+ years<br />Software Development & Research</p>
+        </div>
+        <div class="details-card">
+          <img src="./assets/education.png" alt="Education icon" />
+          <h3>Education</h3>
+          <p>
+            B.S. in Computer Science<br />
+            Arizona State University<br />
+            Class of 2026
+          </p>
+        </div>
       </div>
-      <div class="details-container">
-        <img src="./assets/education.png" alt="Education icon" />
-        <h3>Education</h3>
-        <p>Bachelor of Science in Computer Science,<br />Arizona State University<br />- Holder of NAMU Scholarship</p>
-      </div>
-      <div class="text-container">
+      <div class="text-container reveal">
         <p>
-          Hello! 👋 I’m Kushagra Tandon, a junior at Arizona State University majoring in Computer Science. I’m passionate about Artificial Intelligence, web development, and the fascinating world of quantitative analysis.
-
-My journey in tech is driven by a curiosity to solve complex problems and a desire to create smarter, more efficient systems. I’ve been fortunate to work on projects that combine innovation and practicality, whether it's building web applications, designing AI-powered solutions, or exploring financial modeling and algorithmic trading.
-
-I’m deeply interested in the intersection of technology and data, and my current focus is on mastering machine learning and applying it to both the tech and finance domains. My ultimate goal is to shape a digital world that’s not only smarter but also safer and more impactful.
-
-When I’m not immersed in code or research, you’ll often find me exploring new technologies, tackling challenging datasets, or reading about the latest advancements in AI and finance. I’m always eager to learn, grow, and collaborate with others who share a passion for innovation.
+          I’m a Computer Science student at Arizona State University (Class of 2026) interested in software engineering,
+          machine learning, and quantitative systems. I enjoy building practical solutions—everything from ML-powered
+          web apps to tools that automate real workflows.
+        </p>
+        <p>
+          Recently, I’ve worked on virtual field experiences for the NSF-funded WORM Portal, ML models for credit risk
+          and sentiment-based trading, and full-stack applications using React, Flask, and cloud deployment.
+        </p>
+        <p>
+          Outside of class and research, I like exploring new technologies, experimenting with data-driven trading and
+          risk models, and collaborating on projects at the intersection of AI, finance, and user-focused design. I’m
+          especially excited about opportunities where I can ship production code, work with real data, and learn from
+          experienced engineers and researchers.
+        </p>
+        <p>
+          Right now, I’m looking for software engineering or quantitative / ML internships where I can work with real
+          data, design systems end-to-end, and contribute to production code.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills">
-    <p class="section__text__p1">Explore My</p>
-    <h1 class="title">Skills</h1>
-    <div class="skills-container">
-      <div class="skill-category">
-        <h2>Languages</h2>
-        <div class="skill-items">
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>HTML/CSS</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>SQL</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Python</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>JavaScript</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Java</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>C/C++</h3>
-          </div>
-        </div>
-      </div>
-      <div class="skill-category">
-        <h2>Frameworks</h2>
-        <div class="skill-items">
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>React.js</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Node.js</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Django</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>TensorFlow</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Flask</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Bootstrap</h3>
-          </div>
-        </div>
-      </div>
-      <div class="skill-category">
-        <h2>Other Tools</h2>
-        <div class="skill-items">
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Git</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>MongoDB</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>AWS</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Linux</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Pandas</h3>
-          </div>
-          <div class="skill-item">
-            <img src="./assets/checkmark.png" alt="Checkmark" class="icon" />
-            <h3>Agile</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Experience Section -->
-  <section id="experience">
-    <p class="section__text__p1">My Professional</p>
-    <h1 class="title">Experience</h1>
-    <div class="experience-details-container">
-      <div class="experience-item">
-        <h2>Research Aide at ASU</h2>
-        <p class="experience-duration"><strong>October 2023 - Present</strong></p>
-        <p>
-          - Collaborated with Dr. Reano and the team for scientific accuracy and cultural relevance of virtual field experience modules.<br>
-          - Incorporated Indigenous knowledge into educational materials, fostering a deep connection.<br>
-          - Developed virtual field experience modules for the NSF-funded WORM Portal project using immersive technology, increasing user engagement by 16%.
-        </p>
+    <!-- Skills Section -->
+    <section id="skills" class="section section-alt">
+      <div class="section-header reveal">
+        <p class="section__text__p1">Explore My</p>
+        <h2 class="title">Skills</h2>
       </div>
-      <div class="experience-item">
-        <h2>Production Associate at ASU Programming and Activities Board (PAB)</h2>
-        <p class="experience-duration"><strong>April 2023 - Present</strong></p>
-        <p>
-          - Planned and enhanced organization's events and activities.<br>
-          - Coordinated and executed over 8 diverse programming events, including concerts and workshops.<br>
-          - Delivered technical support for events with advanced AV setups, reducing setup times by 32%.
-        </p>
-      </div>
-      <div class="experience-item">
-        <h2>Software Development Intern at Hindustan Aeronautics Limited</h2>
-        <p class="experience-duration"><strong>June 2023 - August 2023</strong></p>
-        <p>
-          - Developed scalable web solutions using HTML/CSS, JavaScript, and Servlet, improving website efficiency by 25%.<br>
-          - Collaborated with cross-functional teams for real-time monitoring solutions in aerospace technology.<br>
-          - Optimized workflows by designing clean and efficient code, reducing technical debt.
-        </p>
-      </div>
-    </div>
-  </section>
-<!--Projects-->
-  <section id="projects">
-    <p class="section__text__p1">Browse My Recent</p>
-    <h1 class="title">Projects</h1>
-    <div class="projects-container">
-      <!-- Project Card 1 -->
-      <div class="project-card">
-        <div class="project-box">
-          <!-- Front Side -->
-          <div class="project-box-front">
-            <img src="assets/project-3.png" alt="Snake Game" class="project-img" />
-            <h3>Snake Game</h3>
+      <div class="skills-container">
+        <div class="skill-category reveal">
+          <h3>Languages</h3>
+          <div class="skill-items">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">C/C++</span>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">SwiftUI</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Rust</span>
+            <span class="skill-pill">C#</span>
+            <span class="skill-pill">OCaml</span>
           </div>
-          <!-- Back Side -->
-          <div class="project-box-back">
-            <p>
-              Designed and implemented a Snake game in C, featuring core mechanics such as movement, collision detection, and scoring. Integrated dynamically adjustable difficulty levels, file handling for high scores, and modular code organization.
-            </p>
-            <button onclick="window.open('https://github.com/kush0o7/Snake-Game')">GitHub</button>
+        </div>
+        <div class="skill-category reveal">
+          <h3>Frameworks & Tools</h3>
+          <div class="skill-items">
+            <span class="skill-pill">Flask</span>
+            <span class="skill-pill">Django</span>
+            <span class="skill-pill">React.js</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">Bootstrap</span>
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">Backtrader</span>
+            <span class="skill-pill">Binance API</span>
+          </div>
+        </div>
+        <div class="skill-category reveal">
+          <h3>Databases & Cloud</h3>
+          <div class="skill-items">
+            <span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">Firebase</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-category reveal">
+          <h3>Other</h3>
+          <div class="skill-items">
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">Linux</span>
+            <span class="skill-pill">OpenCV</span>
+            <span class="skill-pill">Agile</span>
+            <span class="skill-pill">Open Source</span>
+            <span class="skill-pill">Microsoft Suite</span>
           </div>
         </div>
       </div>
-  
-      <!-- Project Card 2 -->
-      <div class="project-card">
-        <div class="project-box">
-          <!-- Front Side -->
-          <div class="project-box-front">
-            <img src="assets/project-4.jpg" alt="Pdf to Lecture" class="project-img" />
-            <h3>Pdf to Lecture</h3>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+      <div class="section-header reveal">
+        <p class="section__text__p1">My Professional</p>
+        <h2 class="title">Experience</h2>
+      </div>
+      <div class="experience-details-container">
+        <div class="experience-item reveal">
+          <h3>Research Aide</h3>
+          <p class="experience-org">ASU School of Earth &amp; Space Exploration · Tempe, AZ</p>
+          <p class="experience-duration"><strong>October 2023 – May 2025</strong></p>
+          <ul>
+            <li>Developed virtual field experience modules for the NSF-funded WORM Portal project, enhancing user engagement.</li>
+            <li>Collaborated with Dr. Reano and an interdisciplinary team to ensure scientific accuracy and cultural relevance.</li>
+            <li>Integrated Indigenous knowledge frameworks into immersive educational content to create inclusive materials.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item reveal">
+          <h3>Software Development Intern</h3>
+          <p class="experience-org">Hindustan Aeronautics Limited · India</p>
+          <p class="experience-duration"><strong>June 2023 – August 2023</strong></p>
+          <ul>
+            <li>Developed and optimized internal aerospace monitoring dashboards using HTML, CSS, JavaScript, and Java Servlets.</li>
+            <li>Designed modular web components to simplify maintenance and enable reuse across internal tools.</li>
+            <li>Collaborated with cross-functional engineering teams to ensure accurate real-time telemetry data.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item reveal">
+          <h3>Secretary</h3>
+          <p class="experience-org">TEDx Club, Arizona State University · Tempe, AZ</p>
+          <p class="experience-duration"><strong>September 2023 – Present</strong></p>
+          <ul>
+            <li>Managed 30+ TEDx event meetings, coordinating logistics and documentation.</li>
+            <li>Strengthened collaboration across 15+ team members through structured planning.</li>
+            <li>Improved event execution efficiency and stakeholder communication with better documentation processes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-alt">
+      <div class="section-header reveal">
+        <p class="section__text__p1">Browse My Recent</p>
+        <h2 class="title">Projects</h2>
+      </div>
+
+      <div class="projects-container">
+        <!-- Project: Peer-to-Peer Rental App -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/p2p.png" alt="Peer-to-Peer Rental App" class="project-img" />
+              <h3>Peer-to-Peer Rental App</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Peer-to-Peer Rental App | SwiftUI, Firebase, MVVM</strong></p>
+              <ul>
+                <li>Built a mobile app enabling users to list, book, and manage rental equipment using Firebase (Auth, Firestore, Storage).</li>
+                <li>Designed scalable MVVM architecture with reactive UI via <code>@StateObject</code>, <code>@ObservedObject</code>, and <code>@Published</code>.</li>
+                <li>Integrated real-time booking, chat, and listing features with Firestore-backed data synchronization.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>SwiftUI, Firebase, MVVM</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/aryan3002/Energy_App')">
+                GitHub
+              </button>
+            </div>
           </div>
-          <!-- Back Side -->
-          <div class="project-box-back">
-            <p>
-              Designed a Flask-based backend and React.js frontend for automating PDF-to-video conversion with NLP, slide creation, and audio synthesis. Reduced processing time by 40% and manual effort by 90%.
-            </p>
-            <button onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">GitHub</button>
+        </div>
+
+        <!-- Project: Sentiment Analysis Bot -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/Sentiment.png" alt="Sentiment Analysis Bot" class="project-img" />
+              <h3>Sentiment Analysis Bot</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Sentiment Analysis Bot | Python, TensorFlow, NLP, Scikit-learn</strong></p>
+              <ul>
+                <li>Achieved ~19% annualized return in backtests by building a news-driven trading strategy processing 120+ headlines/run.</li>
+                <li>Reduced latency ~35% with a multi-source RSS pipeline fetching 1K+ headlines/day.</li>
+                <li>Improved signal accuracy ~25% using TextBlob sentiment scoring and rolling-window smoothing.</li>
+                <li>Produced full performance metrics in &lt; 2 s/test via a vectorized Pandas/NumPy backtesting engine.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>Python, TensorFlow, Scikit-learn, NLP, Pandas/NumPy</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Sentiment_Analysis_Bot')">
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Credit Risk Prediction -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/project-2.png" alt="Credit Risk Prediction" class="project-img" />
+              <h3>Credit Risk Prediction</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Credit Risk Prediction | Python, Scikit-learn, React, Flask</strong></p>
+              <ul>
+                <li>Developed a web app that predicts credit risk using a Random Forest classifier.</li>
+                <li>Designed a clean Flask + React stack for live model inference and result visualization.</li>
+                <li>Set up CI/CD pipelines for smooth deployment and high availability on GitHub Pages and Render.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>Python, Scikit-learn, React, Flask</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: PDF to Lecture -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/project-4.jpg" alt="PDF to Lecture" class="project-img" />
+              <h3>PDF to Lecture</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>PDF to Lecture | Python, NLP, Flask, React.js</strong></p>
+              <ul>
+                <li>Built a tool to convert PDFs into audio lectures using NLP for text extraction and synthesis.</li>
+                <li>Automated a 6-step manual process to reduce content creation time and effort.</li>
+                <li>Integrated real-time feedback via a React frontend for a better user experience.</li>
+                <li>Handled large files (up to 500MB) efficiently for broader usability.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>Python, NLP, Flask, React.js</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Momentum / Trend-Following Strategy -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/momentum.png" alt="Momentum Trend-Following Strategy" class="project-img" />
+              <h3>Momentum/Trend-Following Strategy</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Momentum/Trend-Following Strategy | Python, Backtrader, yfinance</strong></p>
+              <ul>
+                <li>Implemented a momentum trading strategy using Golden Cross / Death Cross signals (50-day vs 200-day SMA) in Backtrader.</li>
+                <li>Backtested on historical stock, ETF, and crypto data using Yahoo Finance (yfinance).</li>
+                <li>Rendered visual buy/sell markers on price charts to evaluate entry and exit quality.</li>
+                <li>Designed an extensible framework that can be adapted for live trading with broker APIs.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>Python, Backtrader, yfinance</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Momentum_Following_Strategy')">
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Facial Recognition Attendance -->
+        <div class="project-card reveal">
+          <div class="project-box">
+            <div class="project-box-front">
+              <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
+              <h3>Facial Recognition Attendance</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Facial Recognition Attendance System | Python, TensorFlow, OpenCV</strong></p>
+              <ul>
+                <li>Developed a real-time facial recognition system for classroom and corporate attendance.</li>
+                <li>Applied deep learning techniques to boost identification accuracy and tracking efficiency.</li>
+                <li>Designed a simple dashboard to visualize attendance results.</li>
+              </ul>
+              <div class="skills-used">
+                <h4>Stack:</h4>
+                <p>Python, TensorFlow, OpenCV</p>
+              </div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">
+                GitHub
+              </button>
+            </div>
           </div>
         </div>
       </div>
-  
-      <!-- Project Card 3 -->
-      <div class="project-card">
-        <div class="project-box">
-          <!-- Front Side -->
-          <div class="project-box-front">
-            <img src="assets/project-2.png" alt="Credit Risk Prediction" class="project-img" />
-            <h3>Credit Risk Prediction</h3>
-          </div>
-          <!-- Back Side -->
-          <div class="project-box-back">
-            <p>
-              Built a machine learning model using a Random Forest Classifier to predict loan defaults, achieving 86% accuracy. Deployed using React, Flask, and CI/CD pipelines for scalability.
-            </p>
-            <button onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">GitHub</button>
-          </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="section-header reveal">
+        <p class="section__text__p1">Get in Touch</p>
+        <h2 class="title">Contact Me</h2>
+      </div>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container reveal">
+          <img src="./assets/email.png" alt="Email icon" class="icon" />
+          <p><a href="mailto:ktandon4@asu.edu">ktandon4@asu.edu</a></p>
+        </div>
+        <div class="contact-info-container reveal">
+          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon" />
+          <p><a href="https://www.linkedin.com/in/kushagra-tandon-aa2b161ab/">LinkedIn</a></p>
         </div>
       </div>
-  
-      <!-- Project Card 4 -->
-      <div class="project-card">
-        <div class="project-box">
-          <!-- Front Side -->
-          <div class="project-box-front">
-            <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
-            <h3>Facial Recognition Attendance</h3>
-          </div>
-          <!-- Back Side -->
-          <div class="project-box-back">
-            <p>
-              Developed a real-time facial recognition system using Python, TensorFlow, and OpenCV, improving attendance processing efficiency by 50% and identification accuracy by 11%.
-            </p>
-            <button onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">GitHub</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  
-  <!-- Contact Section -->
-  <section id="contact">
-    <p class="section__text__p1">Get in Touch</p>
-    <h1 class="title">Contact Me</h1>
-    <div class="contact-info-upper-container">
-      <div class="contact-info-container fade-in">
-        <img src="./assets/email.png" alt="Email icon" class="icon" />
-        <p><a href="mailto:ktandon4@asu.edu">ktandon4@asu.edu</a></p>
-      </div>
-      <div class="contact-info-container fade-in">
-        <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon" />
-        <p><a href="https://www.linkedin.com/in/kushagra-tandon-aa2b161ab/">LinkedIn</a></p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Skills</a></li>
-        <li><a href="#exp">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>&copy; <span id="year"></span> Kushagra Tandon</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
+</html>

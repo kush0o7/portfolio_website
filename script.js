@@ -1,105 +1,108 @@
-function toggleMenu() {
-    const menu = document.querySelector(".menu-links");
-    const icon = document.querySelector(".hamburger-icon");
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
-  
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && !icon.contains(e.target)) {
-        menu.classList.remove("open");
-        icon.classList.remove("open");
-      }
-    });
-  }
-  
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetElement = document.querySelector(this.getAttribute("href"));
-      const offset = 70; // Adjust for navbar height
-      const elementPosition = targetElement.offsetTop - offset;
-  
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+// Handle hamburger menu toggle
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("open");
+  });
+
+  // Close nav on link click (mobile)
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("open");
     });
   });
-  
-  // Scroll Animation
-  const faders = document.querySelectorAll(".fade-in");
-  const appearOptions = {
-    threshold: 0.3,
-    rootMargin: "0px 0px -50px 0px",
+
+  // Close nav when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("open");
+    }
+  });
+}
+
+// Smooth scrolling for internal links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const targetId = this.getAttribute("href");
+    if (!targetId || targetId === "#") return;
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
+
+    e.preventDefault();
+    const offset = 70; // navbar height
+    const elementPosition = targetElement.offsetTop - offset;
+
+    window.scrollTo({
+      top: elementPosition,
+      behavior: "smooth",
+    });
+  });
+});
+
+// IntersectionObserver for reveal animations
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observerOptions = {
+    threshold: 0.18,
+    rootMargin: "0px 0px -80px 0px",
   };
-  
-  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+
+  const revealObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("show");
-      observer.unobserve(entry.target);
+      obs.unobserve(entry.target);
     });
-  }, appearOptions);
-  
-  faders.forEach((fader) => {
-    appearOnScroll.observe(fader);
-  });
-  document.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      // Toggle the "flipped" class
-      const projectBox = card.querySelector(".project-box");
-      projectBox.classList.toggle("flipped");
-    });
-  });
-  
-  // Active Navigation Link Highlight
-  window.addEventListener("scroll", () => {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-link");
-    let currentSection = "";
-  
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 80;
-      const sectionHeight = section.clientHeight;
-      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-        currentSection = section.getAttribute("id");
-      }
-    });
-  
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${currentSection}`) {
-        link.classList.add("active");
-      }
-    });
-  });
-  // JavaScript for scroll-based animation
-// JavaScript for scroll-based animation
-const experienceItems = document.querySelectorAll('.experience-item');
+  }, observerOptions);
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  },
-  { threshold: 0.1 } // Trigger when 10% of the element is visible
-);
+  revealElements.forEach((el) => revealObserver.observe(el));
+} else {
+  // Fallback: show all immediately
+  revealElements.forEach((el) => el.classList.add("show"));
+}
 
-experienceItems.forEach((item) => observer.observe(item));
+// Project card flip on click
+document.querySelectorAll(".project-card").forEach((card) => {
+  const projectBox = card.querySelector(".project-box");
+  if (!projectBox) return;
 
-  
-  // Close mobile menu on link click
-  document.querySelectorAll(".menu-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-      const menu = document.querySelector(".menu-links");
-      const icon = document.querySelector(".hamburger-icon");
-      menu.classList.remove("open");
-      icon.classList.remove("open");
-    });
+  card.addEventListener("click", () => {
+    projectBox.classList.toggle("flipped");
   });
-  
+});
+
+// Active navigation highlight on scroll
+window.addEventListener("scroll", () => {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinksAll = document.querySelectorAll(".nav-link");
+
+  let currentSectionId = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.clientHeight;
+    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+      currentSectionId = section.getAttribute("id");
+    }
+  });
+
+  navLinksAll.forEach((link) => {
+    link.classList.remove("active");
+    if (currentSectionId && link.getAttribute("href") === `#${currentSectionId}`) {
+      link.classList.add("active");
+    }
+  });
+});
+
+// Set current year in footer
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
