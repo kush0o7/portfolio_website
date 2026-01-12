@@ -11,7 +11,6 @@
         content="Portfolio of Kushagra Tandon – Computer Science student at ASU focused on software engineering, machine learning, and quantitative systems." />
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="media-queries.css" />
 </head>
 <body>
   <!-- Navigation -->
@@ -36,7 +35,7 @@
   <main>
     <!-- Hero / Profile Section -->
     <section id="profile" class="section hero">
-      <div class="section__pic-container reveal">
+      <div class="section__pic-container reveal tilt">
         <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
       </div>
       <div class="section__text reveal">
@@ -107,65 +106,178 @@
     </div>
   </section>
 
+    <!-- SKILLS (redesigned) -->
+<section id="skills" class="section section-alt">
+  <div class="section-header reveal">
+    <p class="section__text__p1">Explore My</p>
+    <h2 class="title">Skills</h2>
+  </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section section-alt">
-      <div class="section-header reveal">
-        <p class="section__text__p1">Explore My</p>
-        <h2 class="title">Skills</h2>
-      </div>
-      <div class="skills-container">
-        <div class="skill-category reveal">
-          <h3>Languages</h3>
-          <div class="skill-items">
-            <span class="skill-pill">Python</span>
-            <span class="skill-pill">C/C++</span>
-            <span class="skill-pill">Java</span>
-            <span class="skill-pill">SwiftUI</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">SQL</span>
-            <span class="skill-pill">Rust</span>
-            <span class="skill-pill">C#</span>
-            <span class="skill-pill">OCaml</span>
-          </div>
+  <div class="skills-grid reveal" aria-live="polite">
+    <!-- left: skill categories + proficiency -->
+    <div class="skills-left">
+      <div class="skill-block">
+        <h3>Languages</h3>
+
+        <div class="skill-row">
+          <span class="skill-name">Python</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
         </div>
-        <div class="skill-category reveal">
-          <h3>Frameworks & Tools</h3>
-          <div class="skill-items">
-            <span class="skill-pill">Flask</span>
-            <span class="skill-pill">Django</span>
-            <span class="skill-pill">React.js</span>
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">TypeScript</span>
-            <span class="skill-pill">Bootstrap</span>
-            <span class="skill-pill">TensorFlow</span>
-            <span class="skill-pill">Backtrader</span>
-            <span class="skill-pill">Binance API</span>
-          </div>
+
+        <div class="skill-row">
+          <span class="skill-name">C / C++</span>
+          <div class="skill-bar" data-level="75" aria-hidden="true"><span></span></div>
         </div>
-        <div class="skill-category reveal">
-          <h3>Databases & Cloud</h3>
-          <div class="skill-items">
-            <span class="skill-pill">MongoDB</span>
-            <span class="skill-pill">Firebase</span>
-            <span class="skill-pill">MySQL</span>
-            <span class="skill-pill">AWS</span>
-            <span class="skill-pill">REST APIs</span>
-          </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Java</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
         </div>
-        <div class="skill-category reveal">
-          <h3>Other</h3>
-          <div class="skill-items">
-            <span class="skill-pill">Git</span>
-            <span class="skill-pill">Linux</span>
-            <span class="skill-pill">OpenCV</span>
-            <span class="skill-pill">Agile</span>
-            <span class="skill-pill">Open Source</span>
-            <span class="skill-pill">Microsoft Suite</span>
-          </div>
+
+        <div class="skill-row">
+          <span class="skill-name">JavaScript / TypeScript</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">SQL</span>
+          <div class="skill-bar" data-level="70" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Rust</span>
+          <div class="skill-bar" data-level="30" aria-hidden="true"><span></span></div>
         </div>
       </div>
-    </section>
+
+      <div class="skill-block">
+        <h3>Machine Learning & Data</h3>
+
+        <div class="skill-row">
+          <span class="skill-name">Pandas / NumPy</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Scikit-learn</span>
+          <div class="skill-bar" data-level="85" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">TensorFlow</span>
+          <div class="skill-bar" data-level="80" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">XGBoost</span>
+          <div class="skill-bar" data-level="80" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">NLP & Time-Series</span>
+          <div class="skill-bar" data-level="60" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Model Eval / Backtesting</span>
+          <div class="skill-bar" data-level="80" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: web/app + infra -->
+    <div class="skills-right">
+      <div class="skill-block">
+        <h3>Web & App Development</h3>
+
+        <div class="skill-row">
+          <span class="skill-name">React.js</span>
+          <div class="skill-bar" data-level="85" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Flask / Django</span>
+          <div class="skill-bar" data-level="85" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Node.js / REST APIs</span>
+          <div class="skill-bar" data-level="70" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">SwiftUI</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Databases & Cloud</h3>
+
+        <div class="skill-row">
+          <span class="skill-name">MongoDB</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">MySQL</span>
+          <div class="skill-bar" data-level="60" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">AWS</span>
+          <div class="skill-bar" data-level="70" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Firebase</span>
+          <div class="skill-bar" data-level="90" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <h3>Tools & Systems</h3>
+
+        <div class="skill-row">
+          <span class="skill-name">Git</span>
+          <div class="skill-bar" data-level="100" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Linux</span>
+          <div class="skill-bar" data-level="60" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">Docker / CI-CD</span>
+          <div class="skill-bar" data-level="60" aria-hidden="true"><span></span></div>
+        </div>
+
+        <div class="skill-row">
+          <span class="skill-name">OpenCV</span>
+          <div class="skill-bar" data-level="80" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Skill focus summary -->
+<div class="skills-right-bottom" style="margin-top:1rem;">
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.6rem;">
+    <span class="chip">Python</span>
+    <span class="chip">Machine Learning</span>
+    <span class="chip">React</span>
+    <span class="chip">Flask</span>
+    <span class="chip">Backtesting</span>
+    <span class="chip">AWS</span>
+  </div>
+  <p class="note" style="margin-bottom:0;">
+    Focused on production-ready Python & ML systems, full-stack web development (React/Flask),
+    and cloud-backed deployment with real-world data and backtesting experience.
+  </p>
+</div>
+
+</section>
 
     <!-- Experience Section -->
     <section id="experience" class="section">
@@ -216,10 +328,11 @@
         <h2 class="title">Projects</h2>
       </div>
 
-      <div class="projects-container">
+      <div class="projects-container reveal">
+        <!-- All project cards placed inside projects-container so they match size -->
         <!-- Project: Peer-to-Peer Rental App -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/p2p.png" alt="Peer-to-Peer Rental App" class="project-img" />
               <h3>Peer-to-Peer Rental App</h3>
@@ -235,16 +348,14 @@
                 <h4>Stack:</h4>
                 <p>SwiftUI, Firebase, MVVM</p>
               </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/aryan3002/Energy_App')">
-                GitHub
-              </button>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/aryan3002/Energy_App')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Sentiment Analysis Bot -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/Sentiment.png" alt="Sentiment Analysis Bot" class="project-img" />
               <h3>Sentiment Analysis Bot</h3>
@@ -257,20 +368,15 @@
                 <li>Improved signal accuracy ~25% using TextBlob sentiment scoring and rolling-window smoothing.</li>
                 <li>Produced full performance metrics in &lt; 2 s/test via a vectorized Pandas/NumPy backtesting engine.</li>
               </ul>
-              <div class="skills-used">
-                <h4>Stack:</h4>
-                <p>Python, TensorFlow, Scikit-learn, NLP, Pandas/NumPy</p>
-              </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Sentiment_Analysis_Bot')">
-                GitHub
-              </button>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, TensorFlow, Scikit-learn, NLP, Pandas/NumPy</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Sentiment_Analysis_Bot')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Credit Risk Prediction -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-2.png" alt="Credit Risk Prediction" class="project-img" />
               <h3>Credit Risk Prediction</h3>
@@ -282,20 +388,15 @@
                 <li>Designed a clean Flask + React stack for live model inference and result visualization.</li>
                 <li>Set up CI/CD pipelines for smooth deployment and high availability on GitHub Pages and Render.</li>
               </ul>
-              <div class="skills-used">
-                <h4>Stack:</h4>
-                <p>Python, Scikit-learn, React, Flask</p>
-              </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">
-                GitHub
-              </button>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, Scikit-learn, React, Flask</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: PDF to Lecture -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-4.jpg" alt="PDF to Lecture" class="project-img" />
               <h3>PDF to Lecture</h3>
@@ -308,20 +409,15 @@
                 <li>Integrated real-time feedback via a React frontend for a better user experience.</li>
                 <li>Handled large files (up to 500MB) efficiently for broader usability.</li>
               </ul>
-              <div class="skills-used">
-                <h4>Stack:</h4>
-                <p>Python, NLP, Flask, React.js</p>
-              </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">
-                GitHub
-              </button>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, NLP, Flask, React.js</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Momentum / Trend-Following Strategy -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/momentum.png" alt="Momentum Trend-Following Strategy" class="project-img" />
               <h3>Momentum/Trend-Following Strategy</h3>
@@ -334,20 +430,15 @@
                 <li>Rendered visual buy/sell markers on price charts to evaluate entry and exit quality.</li>
                 <li>Designed an extensible framework that can be adapted for live trading with broker APIs.</li>
               </ul>
-              <div class="skills-used">
-                <h4>Stack:</h4>
-                <p>Python, Backtrader, yfinance</p>
-              </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Momentum_Following_Strategy')">
-                GitHub
-              </button>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, Backtrader, yfinance</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Momentum_Following_Strategy')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Facial Recognition Attendance -->
         <div class="project-card reveal">
-          <div class="project-box">
+          <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
               <h3>Facial Recognition Attendance</h3>
@@ -359,13 +450,29 @@
                 <li>Applied deep learning techniques to boost identification accuracy and tracking efficiency.</li>
                 <li>Designed a simple dashboard to visualize attendance results.</li>
               </ul>
-              <div class="skills-used">
-                <h4>Stack:</h4>
-                <p>Python, TensorFlow, OpenCV</p>
-              </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">
-                GitHub
-              </button>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, TensorFlow, OpenCV</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EPL card placed INSIDE the projects-container to keep it aligned -->
+        <div class="project-card reveal">
+          <div class="project-box tilt">
+            <div class="project-box-front">
+              <img src="assets/Bet.png" alt="EPL Betting Model" class="project-img" />
+              <h3>EPL Betting Model — Model vs Market Analysis</h3>
+            </div>
+            <div class="project-box-back">
+              <p><strong>EPL Betting Model — Model vs Market Analysis | Python, XGBoost, Scikit-learn, Pandas, Streamlit</strong></p>
+              <ul>
+                <li>Built a calibrated XGBoost model for EPL outcomes, achieving ROC-AUC ≈ 0.79 on 570 out-of-sample matches.</li>
+                <li>Compared model vs bookmaker-implied probabilities using odds-derived features and ELO ratings to identify market edges.</li>
+                <li>Backtested fixed-stake and Kelly strategies across 100+ candidate bets, analyzing ROI and drawdowns.</li>
+                <li>Deployed an interactive Streamlit dashboard to explore predictions, edges, and bankroll simulations.</li>
+              </ul>
+              <div class="skills-used"><h4>Stack:</h4><p>Python, XGBoost, Scikit-learn, Pandas, Streamlit</p></div>
+              <button class="btn btn-ghost" onclick="window.open('https://bettingisntgood.streamlit.app/?')">Visit</button>
             </div>
           </div>
         </div>
