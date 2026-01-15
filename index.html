@@ -10,6 +10,9 @@
   <meta name="description"
         content="Portfolio of Kushagra Tandon – Computer Science student at ASU focused on software engineering, machine learning, and quantitative systems." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -23,6 +26,7 @@
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#contact" class="nav-link">Contact</a>
+        <a href="./assets/Resume.pdf" class="nav-link nav-cta" target="_blank" rel="noopener">Resume</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
         <span></span>
@@ -35,13 +39,18 @@
   <main>
     <!-- Hero / Profile Section -->
     <section id="profile" class="section hero">
-      <div class="section__pic-container reveal tilt">
-        <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
-      </div>
-      <div class="section__text reveal">
+      <div class="hero-left reveal">
         <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Kushagra Tandon</h1>
-        <p class="section__text__p2">Software Developer & ML Enthusiast</p>
+        <h1 class="hero-title">Kushagra Tandon</h1>
+        <p class="hero-subtitle">Software Engineer + Machine Learning</p>
+        <p class="hero-summary">
+          I build ML-backed products, data-driven systems, and polished full-stack apps with a focus on measurable impact.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">ASU CS '26</span>
+          <span class="badge">ML + Full-Stack</span>
+          <span class="badge">Open to internships</span>
+        </div>
         <div class="btn-container">
           <button class="btn btn-primary" onclick="window.open('./assets/Resume.pdf')">
             Download CV
@@ -55,6 +64,25 @@
                onclick="window.open('https://www.linkedin.com/in/kushagra-tandon-aa2b161ab/')" />
           <img src="./assets/github.png" alt="GitHub" class="icon"
                onclick="window.open('https://github.com/kush0o7')" />
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-value">4+ years</span>
+            <span class="stat-label">software development</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">6+ projects</span>
+            <span class="stat-label">ML + full-stack</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">Research + internship</span>
+            <span class="stat-label">ASU + HAL</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right reveal">
+        <div class="section__pic-container tilt">
+          <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
         </div>
       </div>
     </section>
@@ -107,10 +135,11 @@
   </section>
 
     <!-- SKILLS (redesigned) -->
-<section id="skills" class="section section-alt">
+  <section id="skills" class="section section-alt">
   <div class="section-header reveal">
     <p class="section__text__p1">Explore My</p>
     <h2 class="title">Skills</h2>
+    <p class="section-lead">A balanced toolkit across ML, full-stack engineering, and cloud-backed delivery.</p>
   </div>
 
   <div class="skills-grid reveal" aria-live="polite">
@@ -326,16 +355,20 @@
       <div class="section-header reveal">
         <p class="section__text__p1">Browse My Recent</p>
         <h2 class="title">Projects</h2>
+        <p class="section-lead">Impact-focused case studies with measurable outcomes and production-ready stacks.</p>
       </div>
 
       <div class="projects-container reveal">
         <!-- All project cards placed inside projects-container so they match size -->
         <!-- Project: Peer-to-Peer Rental App -->
-        <div class="project-card reveal">
+        <div class="project-card reveal featured">
           <div class="project-box tilt">
             <div class="project-box-front">
+              <span class="project-chip">Featured</span>
               <img src="assets/p2p.png" alt="Peer-to-Peer Rental App" class="project-img" />
               <h3>Peer-to-Peer Rental App</h3>
+              <p class="project-tagline">SwiftUI marketplace with realtime booking, chat, and listings.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>Peer-to-Peer Rental App | SwiftUI, Firebase, MVVM</strong></p>
@@ -354,11 +387,14 @@
         </div>
 
         <!-- Project: Sentiment Analysis Bot -->
-        <div class="project-card reveal">
+        <div class="project-card reveal featured">
           <div class="project-box tilt">
             <div class="project-box-front">
+              <span class="project-chip">Featured</span>
               <img src="assets/Sentiment.png" alt="Sentiment Analysis Bot" class="project-img" />
               <h3>Sentiment Analysis Bot</h3>
+              <p class="project-tagline">News-driven strategy with 19% annualized backtest performance.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>Sentiment Analysis Bot | Python, TensorFlow, NLP, Scikit-learn</strong></p>
@@ -375,11 +411,14 @@
         </div>
 
         <!-- Project: Credit Risk Prediction -->
-        <div class="project-card reveal">
+        <div class="project-card reveal featured">
           <div class="project-box tilt">
             <div class="project-box-front">
+              <span class="project-chip">Featured</span>
               <img src="assets/project-2.png" alt="Credit Risk Prediction" class="project-img" />
               <h3>Credit Risk Prediction</h3>
+              <p class="project-tagline">Live ML inference with React + Flask and CI/CD delivery.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>Credit Risk Prediction | Python, Scikit-learn, React, Flask</strong></p>
@@ -400,6 +439,8 @@
             <div class="project-box-front">
               <img src="assets/project-4.jpg" alt="PDF to Lecture" class="project-img" />
               <h3>PDF to Lecture</h3>
+              <p class="project-tagline">Turns long PDFs into audio lectures with feedback loops.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>PDF to Lecture | Python, NLP, Flask, React.js</strong></p>
@@ -421,6 +462,8 @@
             <div class="project-box-front">
               <img src="assets/momentum.png" alt="Momentum Trend-Following Strategy" class="project-img" />
               <h3>Momentum/Trend-Following Strategy</h3>
+              <p class="project-tagline">Golden cross strategy with visualized entry and exit signals.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>Momentum/Trend-Following Strategy | Python, Backtrader, yfinance</strong></p>
@@ -442,6 +485,8 @@
             <div class="project-box-front">
               <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
               <h3>Facial Recognition Attendance</h3>
+              <p class="project-tagline">Real-time recognition with attendance dashboards.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>Facial Recognition Attendance System | Python, TensorFlow, OpenCV</strong></p>
@@ -462,6 +507,8 @@
             <div class="project-box-front">
               <img src="assets/Bet.png" alt="EPL Betting Model" class="project-img" />
               <h3>EPL Betting Model — Model vs Market Analysis</h3>
+              <p class="project-tagline">Model-vs-market edge analysis with interactive dashboards.</p>
+              <span class="project-hint">Tap for details</span>
             </div>
             <div class="project-box-back">
               <p><strong>EPL Betting Model — Model vs Market Analysis | Python, XGBoost, Scikit-learn, Pandas, Streamlit</strong></p>
