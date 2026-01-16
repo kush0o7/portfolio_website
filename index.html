@@ -26,7 +26,7 @@
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="./assets/Resume.pdf" class="nav-link nav-cta" target="_blank" rel="noopener">Resume</a>
+        <a href="./assets/Resume.pdf" class="nav-link nav-cta magnetic" target="_blank" rel="noopener">Resume</a>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
         <span></span>
@@ -35,6 +35,13 @@
       </button>
     </div>
   </nav>
+
+  <div class="fx-layer" aria-hidden="true">
+    <div class="orb orb--cyan" data-depth="0.6"></div>
+    <div class="orb orb--amber" data-depth="0.35"></div>
+    <div class="orb orb--mint" data-depth="0.5"></div>
+    <div class="grid-plane" data-depth="0.2"></div>
+  </div>
 
   <main>
     <!-- Hero / Profile Section -->
@@ -49,13 +56,13 @@
         <div class="hero-badges">
           <span class="badge">ASU CS '26</span>
           <span class="badge">ML + Full-Stack</span>
-          <span class="badge">Open to internships</span>
+          <span class="badge">Open to internships/Full-Time</span>
         </div>
         <div class="btn-container">
-          <button class="btn btn-primary" onclick="window.open('./assets/Resume.pdf')">
+          <button class="btn btn-primary magnetic" onclick="window.open('./assets/Resume.pdf')">
             Download CV
           </button>
-          <button class="btn btn-secondary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+          <button class="btn btn-secondary magnetic" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
             Contact Info
           </button>
         </div>
@@ -66,22 +73,22 @@
                onclick="window.open('https://github.com/kush0o7')" />
         </div>
         <div class="hero-stats">
-          <div class="stat-card">
+          <div class="stat-card depth-card tilt-card" data-tilt="8">
             <span class="stat-value">4+ years</span>
             <span class="stat-label">software development</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card depth-card tilt-card" data-tilt="8">
             <span class="stat-value">6+ projects</span>
             <span class="stat-label">ML + full-stack</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card depth-card tilt-card" data-tilt="8">
             <span class="stat-value">Research + internship</span>
             <span class="stat-label">ASU + HAL</span>
           </div>
         </div>
       </div>
       <div class="hero-right reveal">
-        <div class="section__pic-container tilt">
+        <div class="section__pic-container tilt tilt-card" data-tilt="10" data-perspective="1200">
           <img src="./assets/profile-pic.png" alt="Kushagra profile picture" />
         </div>
       </div>
@@ -95,12 +102,12 @@
     </div>
     <div class="about-details-container">
       <div class="about-cards reveal">
-        <div class="details-card">
+        <div class="details-card depth-card tilt-card" data-tilt="8">
           <img src="./assets/experience.png" alt="Experience icon" />
           <h3>Experience</h3>
-          <p>3+ years<br />Software Development & Research</p>
+          <p>4+ years<br />Software Development & Research</p>
         </div>
-        <div class="details-card">
+        <div class="details-card depth-card tilt-card" data-tilt="8">
           <img src="./assets/education.png" alt="Education icon" />
           <h3>Education</h3>
           <p>
@@ -145,7 +152,7 @@
   <div class="skills-grid reveal" aria-live="polite">
     <!-- left: skill categories + proficiency -->
     <div class="skills-left">
-      <div class="skill-block">
+      <div class="skill-block depth-card tilt-card" data-tilt="8">
         <h3>Languages</h3>
 
         <div class="skill-row">
@@ -179,7 +186,7 @@
         </div>
       </div>
 
-      <div class="skill-block">
+      <div class="skill-block depth-card tilt-card" data-tilt="8">
         <h3>Machine Learning & Data</h3>
 
         <div class="skill-row">
@@ -216,7 +223,7 @@
 
     <!-- right: web/app + infra -->
     <div class="skills-right">
-      <div class="skill-block">
+      <div class="skill-block depth-card tilt-card" data-tilt="8">
         <h3>Web & App Development</h3>
 
         <div class="skill-row">
@@ -240,7 +247,7 @@
         </div>
       </div>
 
-      <div class="skill-block">
+      <div class="skill-block depth-card tilt-card" data-tilt="8">
         <h3>Databases & Cloud</h3>
 
         <div class="skill-row">
@@ -264,7 +271,7 @@
         </div>
       </div>
 
-      <div class="skill-block">
+      <div class="skill-block depth-card tilt-card" data-tilt="8">
         <h3>Tools & Systems</h3>
 
         <div class="skill-row">
@@ -315,7 +322,7 @@
         <h2 class="title">Experience</h2>
       </div>
       <div class="experience-details-container">
-        <div class="experience-item reveal">
+        <div class="experience-item reveal depth-card tilt-card" data-tilt="8">
           <h3>Research Aide</h3>
           <p class="experience-org">ASU School of Earth &amp; Space Exploration · Tempe, AZ</p>
           <p class="experience-duration"><strong>October 2023 – May 2025</strong></p>
@@ -326,7 +333,7 @@
           </ul>
         </div>
 
-        <div class="experience-item reveal">
+        <div class="experience-item reveal depth-card tilt-card" data-tilt="8">
           <h3>Software Development Intern</h3>
           <p class="experience-org">Hindustan Aeronautics Limited · India</p>
           <p class="experience-duration"><strong>June 2023 – August 2023</strong></p>
@@ -337,7 +344,7 @@
           </ul>
         </div>
 
-        <div class="experience-item reveal">
+        <div class="experience-item reveal depth-card tilt-card" data-tilt="8">
           <h3>Secretary</h3>
           <p class="experience-org">TEDx Club, Arizona State University · Tempe, AZ</p>
           <p class="experience-duration"><strong>September 2023 – Present</strong></p>
@@ -361,7 +368,7 @@
       <div class="projects-container reveal">
         <!-- All project cards placed inside projects-container so they match size -->
         <!-- Project: Peer-to-Peer Rental App -->
-        <div class="project-card reveal featured">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -381,16 +388,15 @@
                 <h4>Stack:</h4>
                 <p>SwiftUI, Firebase, MVVM</p>
               </div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/aryan3002/Energy_App')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/aryan3002/Energy_App')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Sentiment Analysis Bot -->
-        <div class="project-card reveal featured">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
-              <span class="project-chip">Featured</span>
               <img src="assets/Sentiment.png" alt="Sentiment Analysis Bot" class="project-img" />
               <h3>Sentiment Analysis Bot</h3>
               <p class="project-tagline">News-driven strategy with 19% annualized backtest performance.</p>
@@ -405,13 +411,13 @@
                 <li>Produced full performance metrics in &lt; 2 s/test via a vectorized Pandas/NumPy backtesting engine.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, TensorFlow, Scikit-learn, NLP, Pandas/NumPy</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Sentiment_Analysis_Bot')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/Sentiment_Analysis_Bot')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Credit Risk Prediction -->
-        <div class="project-card reveal featured">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -428,13 +434,36 @@
                 <li>Set up CI/CD pipelines for smooth deployment and high availability on GitHub Pages and Render.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, Scikit-learn, React, Flask</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/Credit-Risk-Prediction')">GitHub</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Intent-Level Market Model -->
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
+          <div class="project-box tilt">
+            <div class="project-box-front">
+              <span class="project-chip">Featured</span>
+              <img src="assets/project-3.png" alt="Intent-Level Market Model MVP" class="project-img" />
+              <h3>Intent-Level Market Model MVP</h3>
+              <p class="project-tagline">Tracks semantic drift + hiring signals to surface early org intent.</p>
+              <span class="project-hint">Tap for details</span>
+            </div>
+            <div class="project-box-back">
+              <p><strong>Intent-Level Market Model MVP | FastAPI, Postgres, pgvector, Docker</strong></p>
+              <ul>
+                <li>Built a multi-tenant intent inference platform that ingests job posts and filings.</li>
+                <li>Computed semantic drift and generated evidence-backed intent hypotheses with timelines.</li>
+                <li>Added outcomes tracking, backtesting, and lead-time metrics for validation.</li>
+              </ul>
+              <div class="skills-used"><h4>Stack:</h4><p>FastAPI, Postgres, pgvector, Docker</p></div>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/QuantAI')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: PDF to Lecture -->
-        <div class="project-card reveal">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-4.jpg" alt="PDF to Lecture" class="project-img" />
@@ -451,13 +480,13 @@
                 <li>Handled large files (up to 500MB) efficiently for broader usability.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, NLP, Flask, React.js</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/Pdf-to-com')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Momentum / Trend-Following Strategy -->
-        <div class="project-card reveal">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/momentum.png" alt="Momentum Trend-Following Strategy" class="project-img" />
@@ -474,13 +503,13 @@
                 <li>Designed an extensible framework that can be adapted for live trading with broker APIs.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, Backtrader, yfinance</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Momentum_Following_Strategy')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/Momentum_Following_Strategy')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- Project: Facial Recognition Attendance -->
-        <div class="project-card reveal">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
@@ -496,15 +525,16 @@
                 <li>Designed a simple dashboard to visualize attendance results.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, TensorFlow, OpenCV</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">GitHub</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://github.com/kush0o7/Facial-recognition-attendance')">GitHub</button>
             </div>
           </div>
         </div>
 
         <!-- EPL card placed INSIDE the projects-container to keep it aligned -->
-        <div class="project-card reveal">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
           <div class="project-box tilt">
             <div class="project-box-front">
+              <span class="project-chip">Featured</span>
               <img src="assets/Bet.png" alt="EPL Betting Model" class="project-img" />
               <h3>EPL Betting Model — Model vs Market Analysis</h3>
               <p class="project-tagline">Model-vs-market edge analysis with interactive dashboards.</p>
@@ -519,7 +549,7 @@
                 <li>Deployed an interactive Streamlit dashboard to explore predictions, edges, and bankroll simulations.</li>
               </ul>
               <div class="skills-used"><h4>Stack:</h4><p>Python, XGBoost, Scikit-learn, Pandas, Streamlit</p></div>
-              <button class="btn btn-ghost" onclick="window.open('https://bettingisntgood.streamlit.app/?')">Visit</button>
+              <button class="btn btn-ghost magnetic" onclick="window.open('https://bettingisntgood.streamlit.app/?')">Visit</button>
             </div>
           </div>
         </div>

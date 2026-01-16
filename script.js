@@ -75,6 +75,9 @@ document.querySelectorAll(".project-card").forEach((card) => {
 
   card.addEventListener("click", () => {
     projectBox.classList.toggle("flipped");
+    card.classList.toggle("is-flipped");
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
   });
 });
 
@@ -107,74 +110,150 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// === Skill bar animator (robust) ===
+// Skill bar animator
 document.addEventListener("DOMContentLoaded", () => {
   const skillBars = Array.from(document.querySelectorAll(".skill-bar"));
 
-  if (!skillBars.length) {
-    console.log("Skill bars: none found (selector .skill-bar).");
-    return;
-  }
+  if (!skillBars.length) return;
 
-  // ensure spans exist and start at 0
-  skillBars.forEach(bar => {
+  skillBars.forEach((bar) => {
     let inner = bar.querySelector("span");
     if (!inner) {
-      // create one if missing
       inner = document.createElement("span");
       bar.appendChild(inner);
     }
-    // remove any inline width that could block animation; start at 0
     inner.style.width = "0%";
-    // ensure the bar has a data-level attribute (fallback to 0)
     if (!bar.getAttribute("data-level")) bar.setAttribute("data-level", "0");
   });
 
-  // use IntersectionObserver if available
   if ("IntersectionObserver" in window) {
     const barObs = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const bar = entry.target;
         const levelRaw = bar.getAttribute("data-level") || bar.dataset.level || "0";
-        // sanitize to number 0-100
         const level = Math.max(0, Math.min(100, Number(levelRaw) || 0));
         const inner = bar.querySelector("span");
         if (inner) {
-          // set width to target percent — CSS transition will animate
           inner.style.width = `${level}%`;
-          // optional: add aria-valuenow for accessibility
           bar.setAttribute("aria-valuenow", String(level));
         }
         obs.unobserve(bar);
       });
     }, { threshold: 0.2, rootMargin: "0px 0px -80px 0px" });
 
-    skillBars.forEach(b => barObs.observe(b));
+    skillBars.forEach((bar) => barObs.observe(bar));
   } else {
-    // fallback: just set widths immediately
-    console.log("IntersectionObserver not available — setting skill widths immediately.");
-    skillBars.forEach(bar => {
+    skillBars.forEach((bar) => {
       const level = Math.max(0, Math.min(100, Number(bar.getAttribute("data-level")) || 0));
       const inner = bar.querySelector("span");
       if (inner) inner.style.width = `${level}%`;
       bar.setAttribute("aria-valuenow", String(level));
     });
   }
-
-  console.log(`Skill bars: initialized (${skillBars.length} bars).`);
 });
 
-// small parallax for hero image
-(function(){
-  const pic = document.querySelector('.section__pic-container img');
-  if (!pic) return;
-  window.addEventListener('mousemove', (e) => {
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx; // -1..1
-    const dy = (e.clientY - cy) / cy;
-    pic.style.transform = `translate3d(${dx*4}px, ${dy*4}px, 0) rotate(${dx*1.2}deg)`;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+// 3D tilt for cards
+if (canHover && !prefersReducedMotion) {
+  document.querySelectorAll(".tilt-card[data-tilt]").forEach((el) => {
+    const maxTilt = Number(el.dataset.tilt) || 8;
+    const perspective = Number(el.dataset.perspective) || 900;
+    let rafId = null;
+
+    el.style.setProperty("--perspective", `${perspective}px`);
+
+    const handleMove = (event) => {
+      if (el.classList.contains("is-flipped")) return;
+      const rect = el.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      const rx = (y * -maxTilt).toFixed(2);
+      const ry = (x * maxTilt).toFixed(2);
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        el.style.setProperty("--rx", `${rx}deg`);
+        el.style.setProperty("--ry", `${ry}deg`);
+      });
+    };
+
+    el.addEventListener("mouseenter", () => {
+      el.classList.add("is-tilting");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      el.classList.remove("is-tilting");
+      el.style.setProperty("--rx", "0deg");
+      el.style.setProperty("--ry", "0deg");
+    });
+
+    el.addEventListener("mousemove", handleMove);
   });
-  window.addEventListener('mouseleave', () => pic.style.transform = '');
-})();
+}
+
+// Magnetic hover for buttons/links
+if (canHover && !prefersReducedMotion) {
+  document.querySelectorAll(".magnetic").forEach((el) => {
+    const strength = Number(el.dataset.magnet) || 12;
+
+    const handleMove = (event) => {
+      const rect = el.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+      el.style.setProperty("--mag-x", `${(x / rect.width) * strength}px`);
+      el.style.setProperty("--mag-y", `${(y / rect.height) * strength}px`);
+    };
+
+    el.addEventListener("mousemove", handleMove);
+    el.addEventListener("mouseleave", () => {
+      el.style.setProperty("--mag-x", "0px");
+      el.style.setProperty("--mag-y", "0px");
+    });
+  });
+}
+
+// Parallax for background shapes
+const fxLayer = document.querySelector(".fx-layer");
+const depthNodes = Array.from(document.querySelectorAll("[data-depth]"));
+
+if (fxLayer && depthNodes.length && !prefersReducedMotion) {
+  depthNodes.forEach((el) => {
+    const depth = Number(el.dataset.depth) || 0;
+    el.style.setProperty("--depth", depth);
+  });
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let latestScroll = window.scrollY;
+  let ticking = false;
+
+  const updateParallax = () => {
+    const offsetX = (mouseX - window.innerWidth / 2) * 0.02;
+    const offsetY = (mouseY - window.innerHeight / 2) * 0.02;
+    fxLayer.style.setProperty("--px", `${offsetX}px`);
+    fxLayer.style.setProperty("--py", `${offsetY}px`);
+    fxLayer.style.setProperty("--scroll", `${latestScroll * -0.02}px`);
+    ticking = false;
+  };
+
+  const requestTick = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    requestTick();
+  });
+
+  window.addEventListener("scroll", () => {
+    latestScroll = window.scrollY;
+    requestTick();
+  });
+}
