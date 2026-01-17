@@ -36,12 +36,7 @@
     </div>
   </nav>
 
-  <div class="fx-layer" aria-hidden="true">
-    <div class="orb orb--cyan" data-depth="0.6"></div>
-    <div class="orb orb--amber" data-depth="0.35"></div>
-    <div class="orb orb--mint" data-depth="0.5"></div>
-    <div class="grid-plane" data-depth="0.2"></div>
-  </div>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
   <main>
     <!-- Hero / Profile Section -->
@@ -365,10 +360,19 @@
         <p class="section-lead">Impact-focused case studies with measurable outcomes and production-ready stacks.</p>
       </div>
 
+      <div class="project-filters reveal" role="tablist" aria-label="Project filters">
+        <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-chip" data-filter="ml" role="tab" aria-selected="false">ML</button>
+        <button class="filter-chip" data-filter="fullstack" role="tab" aria-selected="false">Full-Stack</button>
+        <button class="filter-chip" data-filter="quant" role="tab" aria-selected="false">Quant</button>
+        <button class="filter-chip" data-filter="mobile" role="tab" aria-selected="false">Mobile</button>
+        <button class="filter-chip" data-filter="data" role="tab" aria-selected="false">Data</button>
+      </div>
+
       <div class="projects-container reveal">
         <!-- All project cards placed inside projects-container so they match size -->
         <!-- Project: Peer-to-Peer Rental App -->
-        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10" data-tags="mobile fullstack firebase">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -394,7 +398,7 @@
         </div>
 
         <!-- Project: Sentiment Analysis Bot -->
-        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10" data-tags="ml nlp quant data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/Sentiment.png" alt="Sentiment Analysis Bot" class="project-img" />
@@ -417,7 +421,7 @@
         </div>
 
         <!-- Project: Credit Risk Prediction -->
-        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10" data-tags="ml fullstack data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -440,7 +444,7 @@
         </div>
 
         <!-- Project: Intent-Level Market Model -->
-        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10" data-tags="data quant backend">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -463,7 +467,7 @@
         </div>
 
         <!-- Project: PDF to Lecture -->
-        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10" data-tags="ml fullstack data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-4.jpg" alt="PDF to Lecture" class="project-img" />
@@ -486,7 +490,7 @@
         </div>
 
         <!-- Project: Momentum / Trend-Following Strategy -->
-        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10" data-tags="quant data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/momentum.png" alt="Momentum Trend-Following Strategy" class="project-img" />
@@ -509,7 +513,7 @@
         </div>
 
         <!-- Project: Facial Recognition Attendance -->
-        <div class="project-card reveal tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal tilt-card depth-card" data-tilt="10" data-tags="ml cv data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <img src="assets/project-1.png" alt="Facial Recognition Attendance" class="project-img" />
@@ -531,7 +535,7 @@
         </div>
 
         <!-- EPL card placed INSIDE the projects-container to keep it aligned -->
-        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10">
+        <div class="project-card reveal featured tilt-card depth-card" data-tilt="10" data-tags="ml quant data">
           <div class="project-box tilt">
             <div class="project-box-front">
               <span class="project-chip">Featured</span>
@@ -574,6 +578,25 @@
       </div>
     </section>
   </main>
+
+  <div class="cmdk" id="cmdk" aria-hidden="true">
+    <div class="cmdk-overlay" id="cmdk-overlay"></div>
+    <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="cmdk-input-row">
+        <span>⌘K</span>
+        <input id="cmdk-input" type="text" placeholder="Jump to section..." autocomplete="off" />
+      </div>
+      <div class="cmdk-list" id="cmdk-list" role="listbox">
+        <button class="cmdk-item" data-href="#profile" role="option">Hero</button>
+        <button class="cmdk-item" data-href="#about" role="option">About</button>
+        <button class="cmdk-item" data-href="#skills" role="option">Skills</button>
+        <button class="cmdk-item" data-href="#experience" role="option">Experience</button>
+        <button class="cmdk-item" data-href="#projects" role="option">Projects</button>
+        <button class="cmdk-item" data-href="#contact" role="option">Contact</button>
+        <button class="cmdk-item" data-href="./assets/Resume.pdf" data-external="true" role="option">Open Resume</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>

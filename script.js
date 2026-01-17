@@ -215,45 +215,188 @@ if (canHover && !prefersReducedMotion) {
   });
 }
 
-// Parallax for background shapes
-const fxLayer = document.querySelector(".fx-layer");
-const depthNodes = Array.from(document.querySelectorAll("[data-depth]"));
+// Interactive particle background
+const bgCanvas = document.getElementById("bg-canvas");
 
-if (fxLayer && depthNodes.length && !prefersReducedMotion) {
-  depthNodes.forEach((el) => {
-    const depth = Number(el.dataset.depth) || 0;
-    el.style.setProperty("--depth", depth);
-  });
+if (bgCanvas) {
+  const ctx = bgCanvas.getContext("2d");
+  let particles = [];
+  let width = 0;
+  let height = 0;
+  let animationId = null;
+  const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2, active: false };
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let latestScroll = window.scrollY;
-  let ticking = false;
+  const palette = [
+    "rgba(34, 211, 238, 0.6)",
+    "rgba(245, 158, 11, 0.5)",
+    "rgba(129, 140, 248, 0.45)",
+  ];
 
-  const updateParallax = () => {
-    const offsetX = (mouseX - window.innerWidth / 2) * 0.02;
-    const offsetY = (mouseY - window.innerHeight / 2) * 0.02;
-    fxLayer.style.setProperty("--px", `${offsetX}px`);
-    fxLayer.style.setProperty("--py", `${offsetY}px`);
-    fxLayer.style.setProperty("--scroll", `${latestScroll * -0.02}px`);
-    ticking = false;
+  const resizeCanvas = () => {
+    if (!ctx) return;
+    const dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    bgCanvas.width = width * dpr;
+    bgCanvas.height = height * dpr;
+    bgCanvas.style.width = `${width}px`;
+    bgCanvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(120, Math.floor(width / 10));
+    particles = Array.from({ length: count }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: 1 + Math.random() * 2.2,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      color: palette[Math.floor(Math.random() * palette.length)],
+    }));
   };
 
-  const requestTick = () => {
-    if (!ticking) {
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
+  const draw = () => {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, width, height);
+    ctx.globalCompositeOperation = "lighter";
+
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.fillStyle = p.color;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (mouse.active) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 140) {
+          ctx.strokeStyle = "rgba(34, 211, 238, 0.12)";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+    });
+
+    ctx.globalCompositeOperation = "source-over";
+    animationId = requestAnimationFrame(draw);
   };
 
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
   window.addEventListener("mousemove", (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    requestTick();
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+    mouse.active = true;
+  });
+  window.addEventListener("mouseleave", () => {
+    mouse.active = false;
   });
 
-  window.addEventListener("scroll", () => {
-    latestScroll = window.scrollY;
-    requestTick();
+  if (!prefersReducedMotion) {
+    draw();
+  } else if (ctx) {
+    draw();
+    if (animationId) cancelAnimationFrame(animationId);
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && animationId) {
+      cancelAnimationFrame(animationId);
+    } else if (!document.hidden && !prefersReducedMotion) {
+      draw();
+    }
   });
 }
+
+// Project filters
+const filterButtons = document.querySelectorAll(".filter-chip");
+const projectCards = document.querySelectorAll(".project-card");
+
+const applyFilter = (filter) => {
+  projectCards.forEach((card) => {
+    const tags = (card.dataset.tags || "").split(" ").filter(Boolean);
+    const match = filter === "all" || tags.includes(filter);
+    card.classList.toggle("is-hidden", !match);
+  });
+  filterButtons.forEach((btn) => {
+    const isActive = btn.dataset.filter === filter;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+};
+
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    applyFilter(btn.dataset.filter || "all");
+  });
+});
+
+// Command palette
+const cmdk = document.getElementById("cmdk");
+const cmdkOverlay = document.getElementById("cmdk-overlay");
+const cmdkInput = document.getElementById("cmdk-input");
+const cmdkItems = Array.from(document.querySelectorAll(".cmdk-item"));
+
+const openCmdk = () => {
+  if (!cmdk || !cmdkInput) return;
+  cmdk.classList.add("open");
+  cmdk.setAttribute("aria-hidden", "false");
+  cmdkInput.value = "";
+  cmdkItems.forEach((item) => (item.style.display = "block"));
+  cmdkInput.focus();
+};
+
+const closeCmdk = () => {
+  if (!cmdk) return;
+  cmdk.classList.remove("open");
+  cmdk.setAttribute("aria-hidden", "true");
+};
+
+document.addEventListener("keydown", (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    openCmdk();
+  }
+  if (event.key === "Escape") {
+    closeCmdk();
+  }
+});
+
+cmdkOverlay?.addEventListener("click", closeCmdk);
+
+cmdkInput?.addEventListener("input", (event) => {
+  const value = event.target.value.toLowerCase();
+  cmdkItems.forEach((item) => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(value) ? "block" : "none";
+  });
+});
+
+cmdkItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const href = item.getAttribute("data-href");
+    const external = item.getAttribute("data-external") === "true";
+    if (href) {
+      if (external) {
+        window.open(href, "_blank", "noopener");
+      } else {
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 70;
+          const elementPosition = target.offsetTop - offset;
+          window.scrollTo({ top: elementPosition, behavior: "smooth" });
+        }
+      }
+    }
+    closeCmdk();
+  });
+});

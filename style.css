@@ -38,9 +38,9 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 12% 12%, rgba(34, 211, 238, 0.16), transparent 45%),
-    radial-gradient(circle at 88% 6%, rgba(245, 158, 11, 0.16), transparent 40%),
-    linear-gradient(180deg, rgba(11, 11, 16, 0.98), rgba(7, 10, 18, 0.95));
+    radial-gradient(circle at 20% 10%, rgba(34, 211, 238, 0.12), transparent 42%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.12), transparent 45%),
+    linear-gradient(180deg, rgba(9, 10, 18, 0.98), rgba(6, 8, 16, 0.96));
   color: var(--text-main);
   line-height: 1.6;
   position: relative;
@@ -59,6 +59,14 @@ body::before {
   z-index: 0;
 }
 
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
 main {
   position: relative;
   z-index: 1;
@@ -72,69 +80,6 @@ main {
   margin: 0 auto;
   position: relative;
   z-index: 1;
-}
-
-.fx-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  --px: 0px;
-  --py: 0px;
-  --scroll: 0px;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(0px);
-  opacity: 0.5;
-  transform: translate3d(calc(var(--px) * var(--depth, 0)), calc(var(--py) * var(--depth, 0) + var(--scroll) * var(--depth, 0.6)), 0);
-  transition: transform 0.6s ease;
-  will-change: transform;
-  mix-blend-mode: screen;
-}
-
-.orb--cyan {
-  width: 520px;
-  height: 520px;
-  left: -120px;
-  top: -140px;
-  background: radial-gradient(circle at 30% 30%, rgba(34, 211, 238, 0.55), transparent 60%);
-  box-shadow: 0 0 120px var(--glow-cyan);
-}
-
-.orb--amber {
-  width: 420px;
-  height: 420px;
-  right: -140px;
-  top: 18%;
-  background: radial-gradient(circle at 35% 30%, rgba(245, 158, 11, 0.5), transparent 62%);
-  box-shadow: 0 0 120px var(--glow-amber);
-}
-
-.orb--mint {
-  width: 360px;
-  height: 360px;
-  left: 18%;
-  bottom: -140px;
-  background: radial-gradient(circle at 35% 30%, rgba(16, 185, 129, 0.45), transparent 65%);
-  box-shadow: 0 0 120px rgba(16, 185, 129, 0.35);
-}
-
-.grid-plane {
-  position: absolute;
-  inset: -10%;
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-  background-size: 80px 80px;
-  opacity: 0.2;
-  transform: translate3d(calc(var(--px) * var(--depth, 0.2)), calc(var(--py) * var(--depth, 0.2) + var(--scroll) * 0.3), 0);
-  transition: transform 0.6s ease;
-  will-change: transform;
-  mask-image: radial-gradient(circle at 30% 20%, rgba(0, 0, 0, 0.65), transparent 70%);
 }
 
 .section-alt {
@@ -736,6 +681,33 @@ main {
 
 /* === Projects === */
 
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-chip {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: var(--radius-pill);
+  background: rgba(18, 24, 36, 0.85);
+  color: var(--text-muted);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.filter-chip.active {
+  color: #0b1120;
+  background: var(--accent);
+  border-color: rgba(34, 211, 238, 0.7);
+}
+
 .projects-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -743,6 +715,10 @@ main {
   margin-top: 1rem;
   grid-auto-rows: 360px; /* ensure grid cells match height */
   align-items: stretch;
+}
+
+.project-card.is-hidden {
+  display: none;
 }
 
 
@@ -998,6 +974,84 @@ footer {
   color: var(--accent);
 }
 
+/* === Command Palette === */
+.cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: none;
+}
+
+.cmdk.open {
+  display: block;
+}
+
+.cmdk-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.cmdk-panel {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, 90vw);
+  background: rgba(12, 16, 24, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1.1rem;
+  box-shadow: var(--shadow-strong);
+  padding: 0.8rem;
+}
+
+.cmdk-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem 0.7rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.cmdk-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.cmdk-input-row input:focus {
+  outline: none;
+}
+
+.cmdk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem;
+}
+
+.cmdk-item {
+  text-align: left;
+  background: rgba(18, 24, 36, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cmdk-item:hover,
+.cmdk-item.active {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: rgba(34, 211, 238, 0.12);
+}
+
 /* === Reveal Animations === */
 
 .reveal {
@@ -1054,9 +1108,7 @@ button:focus-visible {
   .skill-bar { height:9px; }
   .project-img { max-width:180px; }
   .projects-container { grid-auto-rows: auto; } /* allow natural height on small screens */
-  .orb--cyan { width: 360px; height: 360px; }
-  .orb--amber { width: 320px; height: 320px; }
-  .orb--mint { width: 280px; height: 280px; }
+  #bg-canvas { opacity: 0.65; }
 }
 
 @media screen and (max-width: 480px) {
@@ -1072,7 +1124,7 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb { animation: none; }
+  #bg-canvas { opacity: 0.3; }
   .tilt-card,
   .magnetic {
     transition: none;
